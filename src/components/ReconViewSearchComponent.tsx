@@ -3,6 +3,8 @@ import {
   AccordionDetails,
   AccordionSummary,
   Button,
+  Card,
+  Divider,
   Grid2,
   Paper,
   Typography,
@@ -32,9 +34,19 @@ interface ReconDetails {
 const ReconViewSearchComponent = () => {
   const [selectedStartDate, setSelectedStartDate] = useState(new Date());
   const [selectedEndDate, setSelectedEndDate] = useState(new Date());
-  const [pieCharInfoState, setPieChartInfoState] = useState<pieCharInfo[]>();
+  const [pieCharInfoState, setPieChartInfoState] = useState<pieCharInfo[]>([
+    { label: 'Completed', value: 28 },
+    { label: 'Failed', value: 6 },
+    { label: 'Pending', value: 5 }
+  ]);
   const [pieCharAccountPosting, setPieCharAccountPosting] =
-    useState<pieCharInfo[]>();
+    useState<pieCharInfo[]>([
+      { label: 'Posting Completed', value: 6 },
+      { label: 'Response Not Processed', value: 2 },
+      { label: 'Response Not Received', value: 5 },
+      { label: 'Request Not Processed', value: 2 }
+    ]
+    );
   const [reconDetails, setReconDetails] = useState<ReconDetails[]>();
   // const [click, setClick] = useState(false);
   //const [filter, setFilter] = useState(false);
@@ -171,101 +183,187 @@ const ReconViewSearchComponent = () => {
   }, []);
 
   return (
-    <>
-      <Grid2 size={12}>
-        <Accordion defaultExpanded>
-          <AccordionSummary
-            expandIcon={<ArrowDownwardIcon />}
-            aria-controls="panel1-content"
-            id="panel1-header"
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <Typography>Reconciliation View</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Grid2 container spacing={2}>
-              <Grid2 size={5}>
-                <label htmlFor="date-picker">Start Date :&emsp;</label>
+    <div style={{ margin: "5px" }}>
+      <Card style={{ padding: "5px" }}>
+        <Grid2 container spacing={2}>
+          <Grid2 size={5}>
+            <label htmlFor="date-picker">Start Date :&emsp;</label>
+            <DatePicker
+              selected={selectedStartDate}
+              onChange={(date) => setSelectedStartDate(date as Date)}
+              placeholderText="Start Date"
+            />
+          </Grid2>
 
-                <DatePicker
-                  selected={selectedStartDate}
-                  onChange={(date) => setSelectedStartDate(date as Date)}
-                  placeholderText="Start Date"
-                />
-              </Grid2>
-
-              <Grid2 size={5}>
-                <label htmlFor="date-picker"> End Date : &emsp; </label>
-                <DatePicker
-                  popperPlacement="right"
-                  selected={selectedEndDate}
-                  onChange={(date) => handleEndDate(date as Date)}
-                  placeholderText=" End Date"
-                />
-              </Grid2>
-              <Grid2 size={2}>
-                <Button
-                  style={{ bottom: "10%", left: "20%" }}
-                  variant="contained"
-                >
-                  Submit
-                </Button>
-              </Grid2>
-            </Grid2>
-          </AccordionDetails>
-        </Accordion>
-      </Grid2>
-      <h1></h1>
-      <Grid2 container spacing={2}>
-        <Grid2 size={6}>
-          <Paper>
-            <h1 style={{ fontSize: "20px" }}>Application Overview</h1>
-            {!pieCharInfoState ? (
-              <p>loading</p>
-            ) : (
-              <PieChartComponent
-                pieCharInfoState={pieCharInfoState}
-                filterDatafunc={filterDatafunc}
-                //selectedReconDetails={selectedReconDetails}
-              ></PieChartComponent>
-            )}
-          </Paper>
-        </Grid2>
-        <Grid2 size={6}>
-          <Paper>
-            <h1 style={{ fontSize: "20px" }}>Account Posting</h1>
-            {!pieCharAccountPosting ? (
-              <p>loading</p>
-            ) : (
-              <PieChartComponent
-                pieCharInfoState={pieCharAccountPosting}
-                filterDatafunc={filterDatafunc}
-
-                //selectedReconDetails={selectedReconDetails}
-              ></PieChartComponent>
-            )}
+          <Grid2 size={5}>
+            <label htmlFor="date-picker"> End Date : &emsp; </label>
+            <DatePicker
+              popperPlacement="right"
+              selected={selectedEndDate}
+              onChange={(date) => handleEndDate(date as Date)}
+              placeholderText=" End Date"
+            />
+          </Grid2>
+          <Grid2 size={2}>
             <Button
+              style={{ bottom: "10%", left: "20%" }}
+              variant="contained"
+              size="small"
+            >
+              Submit
+            </Button>
+          </Grid2>
+        </Grid2>
+      </Card>
+      <h1></h1>
+      <Card>
+        <Grid2 size={12} container spacing={2}>
+          <Grid2 size={4}>
+            <Paper style={{ padding: "5px" }}>
+              <h1 style={{ fontSize: "14px" }}>Application Overview</h1>
+              {!pieCharInfoState ? (
+                <p>loading</p>
+              ) : (
+                <PieChartComponent
+                  pieCharInfoState={pieCharInfoState}
+                  filterDatafunc={filterDatafunc}
+                //selectedReconDetails={selectedReconDetails}
+                ></PieChartComponent>
+              )}
+            </Paper>
+          </Grid2>
+          <Grid2 size={4}>
+            <Paper style={{ padding: "5px" }}>
+              <h1 style={{ fontSize: "14px" }}>Account Posting</h1>
+              {!pieCharAccountPosting ? (
+                <p>loading</p>
+              ) : (
+                <PieChartComponent
+                  pieCharInfoState={pieCharAccountPosting}
+                  filterDatafunc={filterDatafunc}
+
+                //selectedReconDetails={selectedReconDetails}
+                ></PieChartComponent>
+              )}
+              {/* <Button
               style={{
                 top: "50%",
                 left: "80%",
                 transform: "translate(-50%, -50%)",
               }}
               variant="contained"
+              size="small"
               onClick={() => fetchDetailRecords("")}
             >
               View Details
-            </Button>
-          </Paper>
+            </Button> */}
+            </Paper>
+          </Grid2>
+          <Grid2 size={4}>
+            <Paper style={{ padding: "5px" }}>
+              <h1 style={{ fontSize: "14px" }}>Account Posting</h1>
+              {!pieCharAccountPosting ? (
+                <p>loading</p>
+              ) : (
+                <PieChartComponent
+                  pieCharInfoState={pieCharAccountPosting}
+                  filterDatafunc={filterDatafunc}
+
+                //selectedReconDetails={selectedReconDetails}
+                ></PieChartComponent>
+              )}
+              {/* <Button
+              style={{
+                top: "50%",
+                left: "80%",
+                transform: "translate(-50%, -50%)",
+              }}
+              variant="contained"
+              size="small"
+              onClick={() => fetchDetailRecords("")}
+            >
+              View Details
+            </Button> */}
+            </Paper>
+            <Paper></Paper>
+          </Grid2>
         </Grid2>
-        <Grid2 size={4}>
-          <Paper></Paper>
+
+        <h1></h1>
+
+        <Grid2 size={12} container spacing={2}>
+          <Grid2 size={4}>
+            <Paper style={{ padding: "5px" }}>
+              <h1 style={{ fontSize: "14px" }}>Application Overview</h1>
+              {!pieCharInfoState ? (
+                <p>loading</p>
+              ) : (
+                <PieChartComponent
+                  pieCharInfoState={pieCharInfoState}
+                  filterDatafunc={filterDatafunc}
+                //selectedReconDetails={selectedReconDetails}
+                ></PieChartComponent>
+              )}
+            </Paper>
+          </Grid2>
+          <Grid2 size={4}>
+            <Paper style={{ padding: "5px" }}>
+              <h1 style={{ fontSize: "14px" }}>Account Posting</h1>
+              {!pieCharAccountPosting ? (
+                <p>loading</p>
+              ) : (
+                <PieChartComponent
+                  pieCharInfoState={pieCharAccountPosting}
+                  filterDatafunc={filterDatafunc}
+
+                //selectedReconDetails={selectedReconDetails}
+                ></PieChartComponent>
+              )}
+              {/* <Button
+              style={{
+                top: "50%",
+                left: "80%",
+                transform: "translate(-50%, -50%)",
+              }}
+              variant="contained"
+              size="small"
+              onClick={() => fetchDetailRecords("")}
+            >
+              View Details
+            </Button> */}
+            </Paper>
+          </Grid2>
+          <Grid2 size={4}>
+            <Paper style={{ padding: "5px" }}>
+              <h1 style={{ fontSize: "14px" }}>Account Posting</h1>
+              {!pieCharAccountPosting ? (
+                <p>loading</p>
+              ) : (
+                <PieChartComponent
+                  pieCharInfoState={pieCharAccountPosting}
+                  filterDatafunc={filterDatafunc}
+
+                //selectedReconDetails={selectedReconDetails}
+                ></PieChartComponent>
+              )}
+              {/* <Button
+              style={{
+                top: "50%",
+                left: "80%",
+                transform: "translate(-50%, -50%)",
+              }}
+              variant="contained"
+              size="small"
+              onClick={() => fetchDetailRecords("")}
+            >
+              View Details
+            </Button> */}
+            </Paper>
+            <Paper></Paper>
+          </Grid2>
         </Grid2>
-      </Grid2>
-      <h1></h1>
+      </Card>
+
       <Grid2 container spacing={2}>
         <Grid2 size={12}>
           <Paper>
@@ -281,7 +379,7 @@ const ReconViewSearchComponent = () => {
         </Grid2>
         <Grid2 size={12}></Grid2>
       </Grid2>
-    </>
+    </div>
   );
 };
 
