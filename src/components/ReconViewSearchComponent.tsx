@@ -1,15 +1,4 @@
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Button,
-  Card,
-  Divider,
-  Grid2,
-  Paper,
-  Typography,
-} from "@mui/material";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import { Button, Card, Grid2, Paper } from "@mui/material";
 import { useEffect, useState } from "react";
 //import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import DatePicker from "react-datepicker";
@@ -35,18 +24,18 @@ const ReconViewSearchComponent = () => {
   const [selectedStartDate, setSelectedStartDate] = useState(new Date());
   const [selectedEndDate, setSelectedEndDate] = useState(new Date());
   const [pieCharInfoState, setPieChartInfoState] = useState<pieCharInfo[]>([
-    { label: 'Completed', value: 28 },
-    { label: 'Failed', value: 6 },
-    { label: 'Pending', value: 5 }
+    { label: "Completed", value: 28 },
+    { label: "Failed", value: 6 },
+    { label: "Pending", value: 5 },
   ]);
-  const [pieCharAccountPosting, setPieCharAccountPosting] =
-    useState<pieCharInfo[]>([
-      { label: 'Posting Completed', value: 6 },
-      { label: 'Response Not Processed', value: 2 },
-      { label: 'Response Not Received', value: 5 },
-      { label: 'Request Not Processed', value: 2 }
-    ]
-    );
+  const [pieCharAccountPosting, setPieCharAccountPosting] = useState<
+    pieCharInfo[]
+  >([
+    { label: "Posting Completed", value: 6 },
+    { label: "Response Not Processed", value: 2 },
+    { label: "Response Not Received", value: 5 },
+    { label: "Request Not Processed", value: 2 },
+  ]);
   const [reconDetails, setReconDetails] = useState<ReconDetails[]>();
   // const [click, setClick] = useState(false);
   //const [filter, setFilter] = useState(false);
@@ -227,7 +216,7 @@ const ReconViewSearchComponent = () => {
                 <PieChartComponent
                   pieCharInfoState={pieCharInfoState}
                   filterDatafunc={filterDatafunc}
-                //selectedReconDetails={selectedReconDetails}
+                  //selectedReconDetails={selectedReconDetails}
                 ></PieChartComponent>
               )}
             </Paper>
@@ -242,7 +231,7 @@ const ReconViewSearchComponent = () => {
                   pieCharInfoState={pieCharAccountPosting}
                   filterDatafunc={filterDatafunc}
 
-                //selectedReconDetails={selectedReconDetails}
+                  //selectedReconDetails={selectedReconDetails}
                 ></PieChartComponent>
               )}
               {/* <Button
@@ -269,7 +258,7 @@ const ReconViewSearchComponent = () => {
                   pieCharInfoState={pieCharAccountPosting}
                   filterDatafunc={filterDatafunc}
 
-                //selectedReconDetails={selectedReconDetails}
+                  //selectedReconDetails={selectedReconDetails}
                 ></PieChartComponent>
               )}
               {/* <Button
@@ -301,7 +290,7 @@ const ReconViewSearchComponent = () => {
                 <PieChartComponent
                   pieCharInfoState={pieCharInfoState}
                   filterDatafunc={filterDatafunc}
-                //selectedReconDetails={selectedReconDetails}
+                  //selectedReconDetails={selectedReconDetails}
                 ></PieChartComponent>
               )}
             </Paper>
@@ -316,7 +305,7 @@ const ReconViewSearchComponent = () => {
                   pieCharInfoState={pieCharAccountPosting}
                   filterDatafunc={filterDatafunc}
 
-                //selectedReconDetails={selectedReconDetails}
+                  //selectedReconDetails={selectedReconDetails}
                 ></PieChartComponent>
               )}
               {/* <Button
@@ -343,7 +332,7 @@ const ReconViewSearchComponent = () => {
                   pieCharInfoState={pieCharAccountPosting}
                   filterDatafunc={filterDatafunc}
 
-                //selectedReconDetails={selectedReconDetails}
+                  //selectedReconDetails={selectedReconDetails}
                 ></PieChartComponent>
               )}
               {/* <Button
