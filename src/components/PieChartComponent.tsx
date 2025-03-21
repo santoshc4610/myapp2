@@ -10,7 +10,6 @@ interface pieCharInfo {
 interface props {
   pieCharInfoState: pieCharInfo[];
   filterDatafunc: (label: string) => void;
-  // selectedReconDetails: (label: string, piechart: boolean) => void;
 }
 const palette = ["#26a69a", "#fbc02d", "#ffa726", "#f44336"];
 
