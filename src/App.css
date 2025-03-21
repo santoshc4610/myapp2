@@ -1,0 +1,30 @@
+.bgimages {
+    background-image: url(
+"https://img.freepik.com/free-photo/abstract-digital-grid-black-background_53876-97647.jpg?t=st=1736928892~exp=1736932492~hmac=bb8224eb9fdc2c26c9e47935bfd507768889c18909ba2d56e2754fcf73ba68ff&w=900"
+    );
+    height: 150vh;
+    opacity: 0.9;
+    background-attachment:scroll;
+}
+.openItem {
+    height: 200px;
+    width: 500px;
+    overflow-y: auto;
+    overflow-x: auto;
+    position: absolute;
+    bottom: 0px;
+  }
+  .textColor {
+    color: aliceblue;
+  }
+  .textColorDesc {
+    color: chocolate;
+  }
+.alignment {
+  text-align :"center"
+}
+
+ 
+  .table-container{
+    overflow-x: auto;
+  }
